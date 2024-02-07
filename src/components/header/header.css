@@ -1,0 +1,54 @@
+/*
+Copyright 2023 Adobe
+All Rights Reserved.
+NOTICE: Adobe permits you to use, modify, and distribute this file in
+accordance with the terms of the Adobe license agreement accompanying
+it.
+*/
+
+header {
+  position: relative;
+}
+
+header .promo-banner-content {
+  background-color: #015699;
+  min-height: 34px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+}
+
+header .promo-banner-content ul {
+  list-style: disc;
+  display: flex;
+  flex-direction: row;
+}
+
+header .promo-banner-content li {
+  color: white;
+  font-family: SourceSansPro, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin-right: 20px;
+}
+
+header .logo {
+  height: 113px;
+  padding: 30px 0;
+}
+
+header .logo img {
+  width: 340px;
+  margin: auto;
+}
+
+header nav.main-navigation ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+}
+
+header nav.main-navigation ul > li {
+  padding: 0 5px;
+}

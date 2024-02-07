@@ -1,0 +1,4 @@
+.main-body > .block .list .promo {
+  display: flex;
+  flex-direction: row;
+}

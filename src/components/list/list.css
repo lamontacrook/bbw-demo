@@ -1,0 +1,4 @@
+.main-body > block .list {
+  display: flex;
+  flex-direction: row;
+}
