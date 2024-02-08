@@ -40,8 +40,9 @@ const Screen = () => {
             path: path !== '' ? path : data.configurationByPath.item.homePage._path
           };
 
-          localStorage.getItem('audience') || (params.variation = localStorage.getItem('audience'));
-          
+          if(localStorage.getItem('audience')) params['variation'] = localStorage.getItem('audience');
+          console.log(`Current audience is ${params.variation}`);
+       
           setConfiguration(data);
           sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
             .then(({ data }) => {
