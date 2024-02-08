@@ -52,8 +52,8 @@ const Header = ({ content, config, className }) => {
   return (
     <React.Fragment>
       <header className='header' role='banner'>
-        <div class="promo-banner-content">
-          <ul class="ds-promo-line-1">
+        <div className="promo-banner-content">
+          <ul className="ds-promo-line-1">
             <li>Member Exclusive! $17.95 3-Wick &amp; Mist</li>
             <li>Sign in &amp; shop</li>
           </ul>

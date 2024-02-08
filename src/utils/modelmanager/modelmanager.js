@@ -11,7 +11,6 @@ export const componentMapping = {
 };
 
 const ModelManager = ({ content, config }) => {
-  console.log(content);
   const type = content.__typename.replace(/Model/g, '');
   const Component = componentMapping[type];
  

@@ -31,15 +31,18 @@ const Screen = () => {
 
   configPath = `/content/dam/${context.project}/site/configuration/configuration`;
 
-  const version = 'v2';
-
   useEffect(() => {
     const sdk = prepareRequest(context);
     sdk.runPersistedQuery(`${context.endpoint}/configuration`, { path: configPath })
       .then(({ data }) => {
         if (data) {
+          const params = {
+            path: path !== '' ? path : data.configurationByPath.item.homePage._path,
+            variation: localStorage.getItem('audience')|| ''
+
+          };
           setConfiguration(data);
-          sdk.runPersistedQuery(`${context.endpoint}/screen`, { path: path !== '' ? path : data.configurationByPath.item.homePage._path })
+          sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
             .then(({ data }) => {
               if (data) {
                 data.screen.body._metadata.stringMetadata.map((metadata) => {
@@ -66,7 +69,7 @@ const Screen = () => {
       });
 
 
-  }, [handleError, navigate, path, version, context]);
+  }, [handleError, navigate, path, context]);
 
   let i = 0;
 

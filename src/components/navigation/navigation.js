@@ -1,12 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 import './navigation.css';
 import { Link } from 'react-router-dom';
-import { LinkManager, prepareRequest } from '../../utils';
 import PropTypes from 'prop-types';
 import { useErrorHandler } from 'react-error-boundary';
 import { AppContext } from '../../utils/context';
-import Image from '../image/image';
 
 
 const Navigation = ({ className, config, screen }) => {

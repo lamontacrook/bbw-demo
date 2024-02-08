@@ -5,7 +5,6 @@ import Screen from './components/screen';
 import Preview from './components/preview';
 import Settings from './utils/settings';
 import { ErrorBoundary } from 'react-error-boundary';
-import Screendetails from './components/screendetails';
 import Error from './components/error';
 import { useErrorHandler } from 'react-error-boundary';
 import { ThreeDots } from 'react-loader-spinner';
@@ -93,16 +92,6 @@ const App = () => {
                 ><Screen /></ErrorBoundary>
 
               } />
-              <Route exact={true} path={`/${context.project}/*`} element={
-                <ErrorBoundary
-                  FallbackComponent={Error}
-                  onReset={() => {
-                    sessionStorage.removeItem('loggedin');
-                    sessionStorage.removeItem('auth');
-                  }}
-                ><Screendetails /></ErrorBoundary>
-              } />
-
             </Routes>
           </BrowserRouter>
         </div>
