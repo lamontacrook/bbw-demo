@@ -10,6 +10,7 @@ import './screen.css';
 import { AppContext } from '../../utils/context';
 import { Helmet } from 'react-helmet-async';
 import Delayed from '../../utils/delayed';
+import Modal from '../modal';
 
 let configPath = '';
 const Screen = () => {
@@ -17,7 +18,7 @@ const Screen = () => {
   const handleError = useErrorHandler();
   const navigate = useNavigate();
 
-  const [config, setConfiguration] = useState('');
+  const [config, setConfiguration] = useState({});
   const [data, setData] = useState('');
   const [title, setTitle] = useState('');
 
@@ -30,6 +31,9 @@ const Screen = () => {
       `/${rootPath}/${context.project}/${Object.values(props)[0]}`;
 
   configPath = `/content/dam/${context.project}/site/configuration/configuration`;
+  const audience = localStorage.getItem('audience');
+  const date = localStorage.getItem('runas') || new Date();
+  console.log(date);
 
   useEffect(() => {
     const sdk = prepareRequest(context);
@@ -37,24 +41,28 @@ const Screen = () => {
       .then(({ data }) => {
         if (data) {
           const params = {
-            path: path !== '' ? path : data.configurationByPath.item.homePage._path
+            // path: path !== '' ? path : data.configurationByPath.item.homePage._path
+            date: '2024-02-01'
           };
 
-          if(localStorage.getItem('audience')) params['variation'] = localStorage.getItem('audience');
+          if (audience) params['variation'] = audience;
           console.log(`Current audience is ${params.variation}`);
-       
+          console.log(`Current date is: ${params.date}`);
           setConfiguration(data);
           sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
             .then(({ data }) => {
               if (data) {
+                if(data.screen.body.length === 0) {
+                  return(<p>No page available</p>);  
+                }
+                if (Array.isArray(data.screen.body)) {
+                  data.screen.body = data.screen.body[0];
+                }
                 data.screen.body._metadata.stringMetadata.map((metadata) => {
                   if (metadata.name === 'title')
                     setTitle(metadata.value);
                 });
 
-                if (Array.isArray(data.screen.body)) {
-                  data.screen.body = data.screen.body[0];
-                }
                 setData(data);
                 context.screenResponse = data;
               }
@@ -74,7 +82,6 @@ const Screen = () => {
   }, [handleError, navigate, path, context]);
 
   let i = 0;
-
   return (
     <React.Fragment>
       <Helmet>
@@ -102,6 +109,9 @@ const Screen = () => {
             </Delayed>
           </div>
         ))}
+        {config && config.configurationByPath && config.configurationByPath.item && (
+          <Modal config={config.configurationByPath.item} audience={audience} />
+        )}
       </div>
       <footer>
         {config && config.configurationByPath && config.configurationByPath.item.footerExperienceFragment &&

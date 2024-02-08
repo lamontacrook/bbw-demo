@@ -6,7 +6,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Image from '../image';
 import Navigation from '../navigation';
@@ -14,41 +14,7 @@ import ModelManager from '../../utils/modelmanager';
 
 import './header.css';
 
-const imageSizes = [
-  {
-    imageWidth: '2000px',
-    renditionName: 'web-optimized-xlarge.webp',
-  },
-  {
-    imageWidth: '1600px',
-    renditionName: 'web-optimized-xlarge.webp',
-  },
-  {
-    imageWidth: '1200px',
-    renditionName: 'web-optimized-xlarge.webp',
-  },
-  {
-    imageWidth: '1000px',
-    renditionName: 'web-optimized-large.webp',
-  },
-  {
-    imageWidth: '750px',
-    renditionName: 'web-optimized-large.webp',
-  },
-  {
-    imageWidth: '500px',
-    renditionName: 'web-optimized-large.webp',
-  },
-  {
-    imageWidth: '412px',
-    renditionName: 'web-optimized-large.webp',
-  },
-  {
-    size: '100vw',
-  }
-];
-
-const Header = ({ content, config, className }) => {
+const Header = ({ content, config }) => {
   return (
     <React.Fragment>
       <header className='header' role='banner'>
@@ -68,11 +34,11 @@ const Header = ({ content, config, className }) => {
           )}
         </div>
         <Navigation config={config} />
+        <ModelManager
+          content={content}
+          config={config.configurationByPath.item}
+        ></ModelManager>
       </header>
-      <ModelManager
-        content={content}
-        config={config.configurationByPath.item}
-      ></ModelManager>
     </React.Fragment>
   );
 };

@@ -38,7 +38,9 @@ h1, h2 {
     text-shadow: 0 0 5px rgba(255,255,255,0.5);
 }
 
-.main-body .block {
+.main-body .block, header .banner, header .promo {
   display: flex;
   flex-direction: column;
+  max-width: 1200px;
+  margin: auto;
 }

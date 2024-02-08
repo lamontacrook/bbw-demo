@@ -6,12 +6,14 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Image from '../image';
-import { mapJsonRichText } from '../../utils/renderRichText';
+import { AppContext } from '../../utils/context';
 
 import './banner.css';
+import { LinkManager } from '../../utils';
 
 const imageSizes = [
   {
@@ -47,12 +49,16 @@ const imageSizes = [
   }
 ];
 
-const Banner = ({ content, config, className }) => {
+const Banner = ({ content, config }) => {
+  const context = useContext(AppContext);
+  const style = content.style ? `${content.style} banner` : 'banner';
+  const path = LinkManager(content.link?._path, config, context);
   return (
     <React.Fragment>
-      <div className={`${content.style} banner`}>
-        {mapJsonRichText(content.title.json)}
-        <Image asset={content.asset} alt={content.asset.title} config={config} imageSizes={imageSizes} />
+      <div className={style}>
+        <Link to={path}>
+          <Image asset={content.asset} alt={content.asset.title} config={config} imageSizes={imageSizes} />
+        </Link>
       </div>
     </React.Fragment>
   );
@@ -61,7 +67,6 @@ const Banner = ({ content, config, className }) => {
 Banner.propTypes = {
   config: PropTypes.object,
   content: PropTypes.object,
-  className: PropTypes.string,
 };
 
 export default Banner;
