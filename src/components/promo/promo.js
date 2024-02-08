@@ -52,7 +52,7 @@ const Promo = ({ content }) => {
     <React.Fragment>
       <div className='promo'>
         <div className='promo-asset'>
-          <Image alt={content.asset.description} title={content.asset.title} asset={content.asset} imageSizes={imageSizes} />
+          <Image alt={content?.asset?.description} title={content?.asset?.title} asset={content.asset} imageSizes={imageSizes} />
         </div>
         <div className='promo-text'>
           {mapJsonRichText(content.title.json)}

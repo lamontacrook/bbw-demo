@@ -37,10 +37,11 @@ const Screen = () => {
       .then(({ data }) => {
         if (data) {
           const params = {
-            path: path !== '' ? path : data.configurationByPath.item.homePage._path,
-            variation: localStorage.getItem('audience')|| ''
-
+            path: path !== '' ? path : data.configurationByPath.item.homePage._path
           };
+
+          localStorage.getItem('audience') || (params.variation = localStorage.getItem('audience'));
+          
           setConfiguration(data);
           sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
             .then(({ data }) => {

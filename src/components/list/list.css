@@ -1,4 +1,18 @@
-.main-body > block .list {
+.main-body > .block .list {
   display: flex;
   flex-direction: row;
+}
+
+.main-body > .block > .list > .promo {
+  width: 25%;
+  background-color: aqua;
+  border: 1px solid black;
+}
+
+.main-body .block > .list .promo-asset {
+  width: 75%;
+}
+
+.main-body .block > .list .promo-asset img {
+  width: 100%;
 }
