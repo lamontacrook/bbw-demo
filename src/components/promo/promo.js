@@ -49,7 +49,7 @@ const imageSizes = [
 
 const Promo = ({ content }) => {
   const editorProps = {
-    'data-aue-resource': `urn:aemconnection:${content._path}/jcr:content/data/master`,
+    'data-aue-resource': `urn:aemconnection:${content._path}/jcr:content/data/${content._variation}`,
     'data-aue-type': 'reference',
     'data-aue-filter': 'cf',
     'data-aue-label': 'Promo'
