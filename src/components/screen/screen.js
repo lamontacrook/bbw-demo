@@ -32,17 +32,19 @@ const Screen = () => {
 
   configPath = `/content/dam/${context.project}/site/configuration/configuration`;
   const audience = localStorage.getItem('audience');
-  const date = localStorage.getItem('runas') || new Date();
+  let date = new Date();
+  const datestring = date.getFullYear() + '-'
+                + ('0'+(date.getMonth()+1)).slice(-2) + '-'
+                + ('0' + date.getDate()).slice(-2);         
+  date = localStorage.getItem('runas') || datestring;
   console.log(date);
-
   useEffect(() => {
     const sdk = prepareRequest(context);
     sdk.runPersistedQuery(`${context.endpoint}/configuration`, { path: configPath })
       .then(({ data }) => {
         if (data) {
           const params = {
-            // path: path !== '' ? path : data.configurationByPath.item.homePage._path
-            date: '2024-02-01'
+            date: date
           };
 
           if (audience) params['variation'] = audience;

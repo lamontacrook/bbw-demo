@@ -15,15 +15,17 @@ import './list.css';
 const List = ({ content, config }) => {
   return (
     <React.Fragment>
-      <span>{mapJsonRichText(content.title.json)}</span>
       <div className='list'>
-        {content.promo.map((p) => (
-          <ModelManager
-            key={p._path}
-            content={p}
-            config={config}
-          ></ModelManager>
-        ))}
+        <span>{mapJsonRichText(content.title.json)}</span>
+        <div className='elements'>
+          {content.promo.map((p) => (
+            <ModelManager
+              key={p._path}
+              content={p}
+              config={config}
+            ></ModelManager>
+          ))}
+        </div>
       </div>
     </React.Fragment>
   );

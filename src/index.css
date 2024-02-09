@@ -269,7 +269,7 @@ div[role=status] {
   --body-title-font-family: var(--body-font-family);
 
   --main-body-max-width: 1200px;
-  --main-body-background-color: blue;
+  --main-body-background-color: var(--main-color);
   
 }
 

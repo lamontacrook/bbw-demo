@@ -4,10 +4,15 @@ body {
 }
 .main-body {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 5px;
+  row-gap: 5px;
   max-width: var(--main-body-max-width);
   margin: auto;
   background-color: var(--main-body-background-color);
+  width: 100%;
 }
 .main-body > .block {
   width: 100%;
@@ -18,6 +23,19 @@ body {
   margin: unset;
   padding: 32px 0;
 }
+.main-body > .block:has(.banner) {
+  width: 49%;
+  /* top:unset;
+  left:unset;
+  position: unset;
+  background-color: white;
+  margin: unset;
+  padding: 32px 0; */
+  /* flex-basis: 49%; */
+  /* flex: 1; */
+}
+
+
 
 .main-body > .block:nth-child(1) {
   padding-top:64px;

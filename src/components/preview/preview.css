@@ -3,11 +3,11 @@ body {
   background-image: unset;
 }
 .main-body {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 .main-body > .block {
-  width: 100%;
+  /* width: var(--block-width); */
   top:unset;
   left:unset;
   position: unset;
