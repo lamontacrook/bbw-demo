@@ -38,11 +38,11 @@ const Modal = ({ config, audience }) => {
   };
 
   return (
-    <div id="audience-selector" class="modal inactive">
+    <div id="audience-selector" className="modal inactive">
       <button value='expand' id='expand' className='expand' onClick={expand}>Expand Modal</button>
       <div className="modal-content">
         <div className='form-element'>
-          <label for='audience'>Audience</label>
+          <label htmlFor='audience'>Audience</label>
           <select id="audience" name="audience" onChange={updateAudience} defaultValue={currentAudience}>
             <option key='none' value='none'>None</option>
             {config && config.audiences.map((audience) => (
@@ -53,7 +53,7 @@ const Modal = ({ config, audience }) => {
         </div>
         <br />
         <div className='form-element'>
-          <label for='run-as-date'>Run As: </label>
+          <label htmlFor='run-as-date'>Run As: </label>
           <DatePicker id='run-as-date' dateFormat='yyyy-MM-dd' defaultValue='run-as-date' selected={runDate} onChange={((date) => {
             if(date) {
               const datestring = date.getFullYear() + '-'
@@ -65,7 +65,7 @@ const Modal = ({ config, audience }) => {
           })} />
         </div>
         <div className='form-element'>
-          <label for='update'></label>
+          <label htmlFor='update'></label>
           <button value='update' id='update' onClick={() => location.reload()}>Update Page</button>
         </div>
       </div>

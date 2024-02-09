@@ -48,15 +48,25 @@ const imageSizes = [
 ];
 
 const Promo = ({ content }) => {
+  const editorProps = {
+    'data-aue-resource': `urn:aemconnection:${content._path}/jcr:content/data/master`,
+    'data-aue-type': 'reference',
+    'data-aue-filter': 'cf',
+    'data-aue-label': 'Promo'
+  };
   return (
     <React.Fragment>
-      <div className='promo'>
+      <div className='promo' {...editorProps}>
         <div className='promo-asset'>
           <Image alt={content?.asset?.description} title={content?.asset?.title} asset={content.asset} imageSizes={imageSizes} />
         </div>
         <div className='promo-text'>
-          {mapJsonRichText(content.title.json)}
-          {mapJsonRichText(content.promotionalLanguage.json)}
+          <span  data-aue-prop='title' data-aue-type='richtext' data-aue-label='Headline'>
+            {mapJsonRichText(content.title.json)}
+          </span>
+          <span  data-aue-prop='promotionalLanguage' data-aue-type='richtext' data-aue-label='Promotional Language'>
+            {mapJsonRichText(content.promotionalLanguage.json)}
+          </span>
         </div>
       </div>
     </React.Fragment>

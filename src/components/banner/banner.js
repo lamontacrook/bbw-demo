@@ -53,9 +53,15 @@ const Banner = ({ content, config }) => {
   const context = useContext(AppContext);
   const style = content.style ? `${content.style} banner` : 'banner';
   const path = LinkManager(content.link?._path, config, context);
+  const editorProps = {
+    'data-aue-resource': `urn:aemconnection:${content._path}/jcr:content/data/master`,
+    'data-aue-type': 'reference',
+    'data-aue-filter': 'cf',
+    'data-aue-label': 'Banner'
+  };
   return (
     <React.Fragment>
-      <div className={style}>
+      <div className={style} {...editorProps}>
         <Link to={path}>
           <Image asset={content.asset} alt={content.asset.title} config={config} imageSizes={imageSizes} />
         </Link>

@@ -16,29 +16,30 @@ let configPath = '';
 const Screen = () => {
   const context = useContext(AppContext);
   const handleError = useErrorHandler();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [config, setConfiguration] = useState({});
   const [data, setData] = useState('');
   const [title, setTitle] = useState('');
+  const [audience, setAudience] = useState('');
 
   const props = useParams();
   let path = '';
 
-  if (Object.values(props).length && Object.values(props)[0] !== '')
-    path = (Object.values(props)[0].includes(rootPath)) ?
-      `/${Object.values(props)[0]}` :
-      `/${rootPath}/${context.project}/${Object.values(props)[0]}`;
+  // if (Object.values(props).length && Object.values(props)[0] !== '')
+  //   path = (Object.values(props)[0].includes(rootPath)) ?
+  //     `/${Object.values(props)[0]}` :
+  //     `/${rootPath}/${context.project}/${Object.values(props)[0]}`;
 
   configPath = `/content/dam/${context.project}/site/configuration/configuration`;
-  const audience = localStorage.getItem('audience');
-  let date = new Date();
-  const datestring = date.getFullYear() + '-'
-                + ('0'+(date.getMonth()+1)).slice(-2) + '-'
-                + ('0' + date.getDate()).slice(-2);         
-  date = localStorage.getItem('runas') || datestring;
-  console.log(date);
   useEffect(() => {
+    setAudience(localStorage.getItem('audience'));
+    let date = new Date();
+    const datestring = date.getFullYear() + '-'
+      + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+      + ('0' + date.getDate()).slice(-2);
+    date = localStorage.getItem('runas') || datestring;
+ 
     const sdk = prepareRequest(context);
     sdk.runPersistedQuery(`${context.endpoint}/configuration`, { path: configPath })
       .then(({ data }) => {
@@ -54,8 +55,8 @@ const Screen = () => {
           sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
             .then(({ data }) => {
               if (data) {
-                if(data.screen.body.length === 0) {
-                  return(<p>No page available</p>);  
+                if (data.screen.body.length === 0) {
+                  return (<p>No page available</p>);
                 }
                 if (Array.isArray(data.screen.body)) {
                   data.screen.body = data.screen.body[0];
@@ -81,7 +82,7 @@ const Screen = () => {
       });
 
 
-  }, [handleError, navigate, path, context]);
+  }, [context, handleError]);
 
   let i = 0;
   return (
