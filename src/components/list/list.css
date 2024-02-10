@@ -1,6 +1,7 @@
 .main-body > .block .list span {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .main-body > .block .list .elements {

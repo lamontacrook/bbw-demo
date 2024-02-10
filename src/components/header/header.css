@@ -35,7 +35,7 @@ header .promo-banner-content li {
 
 header .logo {
   padding: 30px 0;
-  text-align: center;
+  /* text-align: center; */
 }
 
 header .logo img {
@@ -43,7 +43,7 @@ header .logo img {
   margin: auto;
   margin: 0;
   position: absolute;
-  top: 50%;
+  /* top: 50%; */
   left: 50%;
   -ms-transform: translateY(-50%);
   -ms-transform: translateX(-50%);

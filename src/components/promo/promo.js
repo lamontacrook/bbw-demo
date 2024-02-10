@@ -12,6 +12,7 @@ import Image from '../image';
 import { mapJsonRichText } from '../../utils/renderRichText';
 
 import './promo.css';
+import DynamicMedia from '../dynamicmedia';
 
 const imageSizes = [
   {
@@ -47,6 +48,16 @@ const imageSizes = [
   }
 ];
 
+const imageProfiles = [
+  {
+    imageWidth: '1200px',
+    imageHeight: '675px'
+  },
+  {
+    size: '100vw',
+  }
+];
+
 const Promo = ({ content }) => {
   const editorProps = {
     'data-aue-resource': `urn:aemconnection:${content._path}/jcr:content/data/${content._variation}`,
@@ -54,17 +65,23 @@ const Promo = ({ content }) => {
     'data-aue-filter': 'cf',
     'data-aue-label': 'Promo'
   };
+  console.log(content.dynamicRenditions);
   return (
     <React.Fragment>
       <div className='promo' {...editorProps}>
         <div className='promo-asset'>
-          <Image alt={content?.asset?.description} title={content?.asset?.title} asset={content.asset} imageSizes={imageSizes} />
+          {!content?.dynamicRenditions && (
+            <Image alt={content?.asset?.description} title={content?.asset?.title} asset={content.asset} imageSizes={imageSizes} />
+          )}
+          {content?.dynamicRenditions && (
+            <DynamicMedia alt={content?.asset?.description} title={content?.asset?.title} asset={content.asset} rendition={content.dynamicRenditions} imageSizes={imageSizes} />
+          )}
         </div>
         <div className='promo-text'>
-          <span  data-aue-prop='title' data-aue-type='richtext' data-aue-label='Headline'>
+          <span data-aue-prop='title' data-aue-type='richtext' data-aue-label='Headline'>
             {mapJsonRichText(content.title.json)}
           </span>
-          <span  data-aue-prop='promotionalLanguage' data-aue-type='richtext' data-aue-label='Promotional Language'>
+          <span data-aue-prop='promotionalLanguage' data-aue-type='richtext' data-aue-label='Promotional Language'>
             {mapJsonRichText(content.promotionalLanguage.json)}
           </span>
         </div>

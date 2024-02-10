@@ -1,9 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import ModelManager from '../../utils/modelmanager';
 import Footer from '../footer';
-import { useParams, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { prepareRequest, rootPath } from '../../utils';
+import { prepareRequest } from '../../utils';
 import Header from '../header';
 import { useErrorHandler } from 'react-error-boundary';
 import './screen.css';
@@ -16,20 +15,11 @@ let configPath = '';
 const Screen = () => {
   const context = useContext(AppContext);
   const handleError = useErrorHandler();
-  // const navigate = useNavigate();
 
   const [config, setConfiguration] = useState({});
   const [data, setData] = useState('');
-  const [title, setTitle] = useState('');
+  const [screenTitle, setScreenTitle] = useState('');
   const [audience, setAudience] = useState('');
-
-  const props = useParams();
-  let path = '';
-
-  // if (Object.values(props).length && Object.values(props)[0] !== '')
-  //   path = (Object.values(props)[0].includes(rootPath)) ?
-  //     `/${Object.values(props)[0]}` :
-  //     `/${rootPath}/${context.project}/${Object.values(props)[0]}`;
 
   configPath = `/content/dam/${context.project}/site/configuration/configuration`;
   useEffect(() => {
@@ -52,6 +42,7 @@ const Screen = () => {
           console.log(`Current audience is ${params.variation}`);
           console.log(`Current date is: ${params.date}`);
           setConfiguration(data);
+          setScreenTitle(data.configurationByPath.item.pageTitle);
           sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
             .then(({ data }) => {
               if (data) {
@@ -61,10 +52,10 @@ const Screen = () => {
                 if (Array.isArray(data.screen.body)) {
                   data.screen.body = data.screen.body[0];
                 }
-                data.screen.body._metadata.stringMetadata.map((metadata) => {
-                  if (metadata.name === 'title')
-                    setTitle(metadata.value);
-                });
+                // data.screen.body._metadata.stringMetadata.map((metadata) => {
+                //   if (metadata.name === 'title')
+                //     setScreenTitle(metadata.value);
+                // });
 
                 setData(data);
                 context.screenResponse = data;
@@ -82,13 +73,13 @@ const Screen = () => {
       });
 
 
-  }, [context, handleError]);
+  }, [context, handleError, audience]);
 
   let i = 0;
   return (
     <React.Fragment>
       <Helmet>
-        <title>WKND: {title}</title>
+        <title>{screenTitle}</title>
       </Helmet>
       {data && data?.screen?.body && (
         <Header config={config} content={data.screen.body.header} />
