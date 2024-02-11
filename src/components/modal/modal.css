@@ -9,11 +9,11 @@
   right: 3%;
   /* Full width */
   width: 100%;
-  overflow: auto;
+  /* overflow: auto; */
   /* Enable scroll if needed */
   /* Black w/ opacity */
-  border: .5px solid #888;
-  border-radius: 30px;
+  /* border: .5px solid #888; */
+  /* border-radius: 30px; */
   min-height: 400px;
 }
 
@@ -39,7 +39,7 @@
 .modal.active .modal-content {
   display: block;
   background-color: #FF0000;
-  width: 100%;
+  /* width: 100%; */
   min-height: 300px;
   /* Could be more or less, depending on screen size */
   height: 100%;
@@ -81,6 +81,10 @@
   }
 
   margin-bottom: 5px;
+}
+
+.modal.inactive button, .modal.inactive select, .modal.inactive input {
+  background-color: transparent;
 }
 
 .modal-content .form-element {

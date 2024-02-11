@@ -13,19 +13,36 @@ const Preview = () => {
   const handleError = useErrorHandler();
   const [config, setConfiguration] = useState('');
   const [data, setData] = useState('');
+  const [audience, setAudience] = useState('');
 
   const props = useParams();
 
   const [modelType, path] = Object.values(props)[0].split(/\/(.*)/s);
 
   useEffect(() => {
+    const params = {};
+    if (modelType === 'screen') {
+      setAudience(localStorage.getItem('audience'));
+      let date = new Date();
+      const datestring = date.getFullYear() + '-'
+        + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
+        + ('0' + date.getDate()).slice(-2);
+      date = localStorage.getItem('runas') || datestring;
+      params.date = date;
+    }
+
     const configPath = `/content/dam/${context.project}/site/configuration/configuration`;
     const sdk = prepareRequest(context);
     sdk.runPersistedQuery(`${context.endpoint}/configuration`, { path: configPath })
       .then(({ data }) => {
         if (data) {
           setConfiguration(data);
-          sdk.runPersistedQuery(`${context.endpoint}/${modelType}-preview`, { path: `/${path}` })
+          if (audience && modelType==='screen') params['variation'] = audience;
+          params['path'] = `/${path}`;
+
+          console.log(params);
+
+          sdk.runPersistedQuery(`${context.endpoint}/${modelType}-preview`, params)
             .then(({ data }) => {
               if (data) {
                 setData(data);
@@ -42,7 +59,7 @@ const Preview = () => {
       });
 
 
-  }, [context, handleError, modelType, path]);
+  }, [context, handleError, modelType, path, audience]);
 
   let i = 0;
 

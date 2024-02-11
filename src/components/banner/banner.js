@@ -82,14 +82,15 @@ const Banner = ({ content, config }) => {
     'data-aue-filter': 'cf',
     'data-aue-label': 'Banner'
   };
+
   return (
     <React.Fragment>
       <div className={style} {...editorProps}>
         <Link to={path}>
-          {content.useSmartCrops && (
+          {!content.useSmartCrops && (
             <Image asset={content.asset} alt={content.asset.title} config={config} imageSizes={imageSizes} />
           )}
-          {!content.useSmartCrops && (
+          {content.useSmartCrops && (
             <SmartCrops asset={content.asset} alt={content.asset?.description} title={content.asset?.title} config={config} imageSizes={imageCrops} />
           )}
         </Link>
