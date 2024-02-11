@@ -50,8 +50,8 @@ code {
 }
 
 @font-face {
-  font-family: "adobe-clean";
-  src: url("https://use.typekit.net/af/dc1cb5/00000000000000007735dadb/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/dc1cb5/00000000000000007735dadb/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/dc1cb5/00000000000000007735dadb/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+  font-family: "sourcesanspro-regular";
+  src: url("./media/fonts/SourceSansPro-Regular.ttf") format("truetype");
   font-display: swap;
   font-style: normal;
   font-weight: 300;
@@ -59,8 +59,8 @@ code {
 }
 
 @font-face {
-  font-family: "adobe-clean";
-  src: url("https://use.typekit.net/af/bc79c1/00000000000000007735dad9/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("woff2"),url("https://use.typekit.net/af/bc79c1/00000000000000007735dad9/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("woff"),url("https://use.typekit.net/af/bc79c1/00000000000000007735dad9/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n9&v=3") format("opentype");
+  font-family: "sourcesanspro-bold";
+  src: url("./media/fonts/SourceSansPro-Bold.ttf") format("truetype");
   font-display: swap;
   font-style: normal;
   font-weight: 900;
@@ -68,26 +68,8 @@ code {
 }
 
 @font-face {
-  font-family: "adobe-clean";
-  src: url("https://use.typekit.net/af/f5ecaa/00000000000000007735dad6/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("woff2"),url("https://use.typekit.net/af/f5ecaa/00000000000000007735dad6/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("woff"),url("https://use.typekit.net/af/f5ecaa/00000000000000007735dad6/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("opentype");
-  font-display: swap;
-  font-style: italic;
-  font-weight: 300;
-  font-stretch: normal;
-}
-
-@font-face {
-  font-family: "adobe-clean-serif";
-  src: url("https://use.typekit.net/af/15eaed/00000000000000007735dac6/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/15eaed/00000000000000007735dac6/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/15eaed/00000000000000007735dac6/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
-  font-display: swap;
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: normal;
-}
-
-@font-face {
-  font-family: "adobe-clean-serif";
-  src: url("https://use.typekit.net/af/2dc334/00000000000000007735dac7/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"),url("https://use.typekit.net/af/2dc334/00000000000000007735dac7/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"),url("https://use.typekit.net/af/2dc334/00000000000000007735dac7/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
+  font-family: "sourcesanspro-semibold";
+  src: url("./media/fonts/SourceSansPro-SemiBold.ttf") format("truetype");
   font-display: swap;
   font-style: normal;
   font-weight: 500;
@@ -101,7 +83,7 @@ code {
   speak: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: wknd-icon-font !important;
+  font-family: ;
   font-size: 1.25rem;
   font-style: normal;
   font-variant: normal;
@@ -201,8 +183,8 @@ h3 a:after {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   content: "";
-  font-family: wknd-icon-font !important;
-  font-size: 1.25rem;
+  font-family: SourceSansPro, Arial, sans-serif;
+  font-size: 14px;
   font-size: var(--fontSizeXSmall);
   font-style: normal;
   font-variant: normal;
@@ -265,7 +247,7 @@ div[role=status] {
   --h1FontWeight: 600;
   --h1FontSize: 72px;
   --line-height-l: 76px;
-  --body-font-family: adobe-clean, arial, sans-serif;
+  --body-font-family: SourceSansPro, Arial, sans-serif;
   --body-title-font-family: var(--body-font-family);
 
   --main-body-max-width: 1200px;

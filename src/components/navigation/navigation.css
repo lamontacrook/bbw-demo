@@ -334,7 +334,7 @@ a:focus::after {
 
   nav .nav-sections a.navItem {
     color: var(--main-text-color);
-    font-size: 1.125rem;
+    font-size: 14px;
     line-height: 1.125rem;
   }
 
