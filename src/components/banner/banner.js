@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Image from '../image';
 import { AppContext } from '../../utils/context';
+import SmartCrops from '../smartcrops';
 
 import './banner.css';
 import { LinkManager } from '../../utils';
@@ -49,7 +50,29 @@ const imageSizes = [
   }
 ];
 
+const imageCrops = [
+  {
+    imageWidth: '1200px',
+    imageHeight: '675px',
+    renditionName: '169banner'
+  },
+  {
+    imageWidth: '900px',
+    imageHeight: '900px',
+    renditionName: '11square'
+  },
+  {
+    imageWidth: '480px',
+    imageHeight: '600px',
+    renditionName: '54vert',
+  },
+  {
+    size: '100vw',
+  }
+];
+
 const Banner = ({ content, config }) => {
+  console.log(content);
   const context = useContext(AppContext);
   const style = content.style ? `${content.style} banner` : 'banner';
   const path = LinkManager(content.link?._path, config, context);
@@ -63,7 +86,12 @@ const Banner = ({ content, config }) => {
     <React.Fragment>
       <div className={style} {...editorProps}>
         <Link to={path}>
-          <Image asset={content.asset} alt={content.asset.title} config={config} imageSizes={imageSizes} />
+          {content.useSmartCrops && (
+            <Image asset={content.asset} alt={content.asset.title} config={config} imageSizes={imageSizes} />
+          )}
+          {!content.useSmartCrops && (
+            <SmartCrops asset={content.asset} alt={content.asset?.description} title={content.asset?.title} config={config} imageSizes={imageCrops} />
+          )}
         </Link>
       </div>
     </React.Fragment>

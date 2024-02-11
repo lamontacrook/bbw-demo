@@ -36,6 +36,18 @@ const Image = ({ asset, alt = 'WKND image', itemProp='asset', width, height, ima
   width = width || asset?.width || '';
   height = height || asset?.height || '';
 
+  //  if(useDM) {
+  //   //https://smartimaging.scene7.com/is/image/DynamicmediaNA1/AdobeStock_224179452:54vert
+  //   const parts = src.split('/');
+  //   const image = parts.pop().split('.')[0];
+  //   const name = imageSizes.filter((item) => {
+  //     if(Object.prototype.hasOwnProperty.call(item, 'renditionName'))
+  //       return item;
+  //   });
+  //   src = `https://smartimaging.scene7.com/is/image/DynamicmediaNA1/${image}-1:${name[0].renditionName}`;
+  // } else {
+  //   src = imageUrl(context, asset);
+  // }
   src = imageUrl(context, asset);
 
   return (

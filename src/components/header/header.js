@@ -30,7 +30,9 @@ const Header = ({ content, config }) => {
         </div>
         <div className='logo'>
           {config && config.configurationByPath && config.configurationByPath.item && (
-            <Image asset={config.configurationByPath.item.siteLogo} alt={config.configurationByPath.item.siteLogo.description} config={config} />
+            <a href='/'>
+              <Image asset={config.configurationByPath.item.siteLogo} alt={config.configurationByPath.item.siteLogo.description} config={config} />
+            </a>
           )}
         </div>
         <Navigation config={config} />

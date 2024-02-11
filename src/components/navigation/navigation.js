@@ -1,19 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 import './navigation.css';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { useErrorHandler } from 'react-error-boundary';
-import { AppContext } from '../../utils/context';
 
-
-const Navigation = ({ className, config, screen }) => {
-  const context = useContext(AppContext);
+const Navigation = () => {
   const [expanded, setExpanded] = useState(false);
-  const handleError = useErrorHandler();
 
   let obj = {
-    pos1: { name: 'Top Offers', path: '#' },
+    pos1: { name: 'Top Offers', path: '/site/en/top-offers/top-offers' },
     pos2: { name: 'Body Care', path: '#' },
     pos3: { name: 'Candles', path: '#' },
     pos4: { name: 'Wallflowers & Air Fresheners', path: '#' },
@@ -38,20 +32,13 @@ const Navigation = ({ className, config, screen }) => {
         <div className='nav-sections'>
           <ul>
             {Object.entries(obj).map(([key, {name, path}]) => (
-              <li key={key}><Link to={'/'} className={'navItem'} name={name}>{name}</Link></li>
+              <li key={key}><Link to={path} className={'navItem'} name={name}>{name}</Link></li>
             ))}
           </ul>
         </div>
       </nav >
     </React.Fragment>
   );
-};
-
-Navigation.propTypes = {
-  className: PropTypes.string,
-  config: PropTypes.object,
-  screen: PropTypes.object,
-  context: PropTypes.object
 };
 
 export default Navigation;

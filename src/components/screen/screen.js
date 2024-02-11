@@ -10,16 +10,18 @@ import { AppContext } from '../../utils/context';
 import { Helmet } from 'react-helmet-async';
 import Delayed from '../../utils/delayed';
 import Modal from '../modal';
+import { useParams } from 'react-router-dom';
 
 let configPath = '';
 const Screen = () => {
   const context = useContext(AppContext);
   const handleError = useErrorHandler();
-
   const [config, setConfiguration] = useState({});
   const [data, setData] = useState('');
   const [screenTitle, setScreenTitle] = useState('');
   const [audience, setAudience] = useState('');
+
+  const path = useParams()['*'];
 
   configPath = `/content/dam/${context.project}/site/configuration/configuration`;
   useEffect(() => {
@@ -37,10 +39,12 @@ const Screen = () => {
           const params = {
             date: date
           };
-
+          if(path) params['path'] = `/content/dam/${context.project}/${path}`;
           if (audience) params['variation'] = audience;
+
           console.log(`Current audience is ${params.variation}`);
           console.log(`Current date is: ${params.date}`);
+
           setConfiguration(data);
           setScreenTitle(data.configurationByPath.item.pageTitle);
           sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
@@ -68,12 +72,17 @@ const Screen = () => {
         }
       })
       .catch((error) => {
-        error.message = `Error with configuration request:\n ${error.message}`;
+        console.log(error.message);
+        if(error.message.includes('<!DOCTYPE'))
+          error.message = `There is an issue connecting with AEM.  Make sure you are not using incognito window and logged into AEM author in another tab.\n\n ${error.message}`;
+        else
+          error.message = `Error with configuration request:\n ${error.message}`;
+        
         handleError(error);
       });
 
 
-  }, [context, handleError, audience]);
+  }, [context, handleError, audience, path]);
 
   let i = 0;
   return (

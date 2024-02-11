@@ -21,23 +21,23 @@ const Preview = () => {
   useEffect(() => {
     const configPath = `/content/dam/${context.project}/site/configuration/configuration`;
     const sdk = prepareRequest(context);
-    sdk.runPersistedQuery('aem-demo-assets/gql-demo-configuration', { path: configPath })
+    sdk.runPersistedQuery(`${context.endpoint}/configuration`, { path: configPath })
       .then(({ data }) => {
         if (data) {
           setConfiguration(data);
-          sdk.runPersistedQuery(`aem-demo-assets/gql-demo-${modelType}`, { path: `/${path}` })
+          sdk.runPersistedQuery(`${context.endpoint}/${modelType}-preview`, { path: `/${path}` })
             .then(({ data }) => {
               if (data) {
                 setData(data);
               }
             })
             .catch((error) => {
-              error.message = `Error with gql-demo-${modelType} request:\n ${error.message}`;
+              error.message = `Error with ${modelType}-preview request:\n ${error.message}`;
               handleError(error);
             });
         }
       }).catch((error) => {
-        error.message = `Error with gql-demo-configuration request:\n ${error.message}`;
+        error.message = `Error with configuration request:\n ${error.message}`;
         handleError(error);
       });
 
