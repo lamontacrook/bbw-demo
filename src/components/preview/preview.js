@@ -52,7 +52,7 @@ const Preview = () => {
         <Header data={data} content={data.component.item} config={config} className='screen' />
       }
 
-      <div className='main-body'>
+      <div className='main-body preview'>
         {data && data.component && data.component.item && data.component.item.__typename !== 'HeaderModel' && (
           <div
             key={`${data.component.item.__typename

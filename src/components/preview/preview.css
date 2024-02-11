@@ -21,3 +21,7 @@ body {
   padding-top:64px;
   opacity: 1;
 }
+
+.main-body.preview > .block:has(.banner) {
+  width: 100%;
+}
