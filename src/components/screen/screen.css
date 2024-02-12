@@ -28,7 +28,7 @@ body {
 }
 
 .main-body > .block:nth-child(1) {
-  padding-top:64px;
+  /* padding-top:64px; */
   opacity: 1;
 }
 

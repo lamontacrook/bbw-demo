@@ -6,7 +6,7 @@ body {
   /* display: flex; */
   /* flex-direction: column; */
 }
-.main-body > .block {
+.main-body.preview > .block {
   /* width: var(--block-width); */
   top:unset;
   left:unset;
@@ -17,7 +17,7 @@ body {
   padding: 32px 0;
 }
 
-.main-body > .block:nth-child(1) {
+.main-body.preview > .block:nth-child(1) {
   padding-top:64px;
   opacity: 1;
 }
