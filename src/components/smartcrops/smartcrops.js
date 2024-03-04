@@ -16,7 +16,7 @@ const SmartCrops = ({ asset, alt = 'WKND image', title = 'Title Missing', itemPr
   const context = useContext(AppContext);
   const [imageFile, setImageFile] = useState('');
   const [domain, setDomain] = useState('');
-  console.log(asset);
+  
   useEffect(() => {
     const src = context.serviceURL === context.defaultServiceURL || context.serviceURL.includes('publish-') ? asset?._authorUrl.replace('author', 'publish') : asset?._authorUrl;
 
@@ -54,7 +54,7 @@ const SmartCrops = ({ asset, alt = 'WKND image', title = 'Title Missing', itemPr
 
   const width = imageSizes[0].imageWidth.replace('px', '');
   const height = imageSizes[0].imageHeight.replace('px', '');
-  console.log(imageFile);
+
   return (
     <picture>
       {domain && imageFile && imageSizes.filter((definition) => definition.imageWidth).map((definition) => (

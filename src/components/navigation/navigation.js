@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Navigation = () => {
   const [expanded, setExpanded] = useState(false);
-  const language = localStorage.getItem('lang') || 'en';
+  const language = localStorage.getItem('lang') ? JSON.parse(localStorage.getItem('lang')).value : 'en';
 
   let obj = {
     en: {

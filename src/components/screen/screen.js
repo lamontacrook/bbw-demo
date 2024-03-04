@@ -50,7 +50,6 @@ const Screen = () => {
           sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
             .then(({ data }) => {
               if (data) {
-                console.log(data);
                 setData(data);
                 context.screenResponse = data;
               }
@@ -74,9 +73,9 @@ const Screen = () => {
 
   }, [context, handleError, audience, path]);
   
-  if(data && data.screen && data.screen.body) {
-    data.screen.body.map((b) => console.log(b));
-  }
+  // if(data && data.screen && data.screen.body) {
+  //   data.screen.body.map((b) => console.log(b));
+  // }
 
   let i = 0;
   return (
