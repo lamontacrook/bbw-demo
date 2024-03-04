@@ -10,6 +10,7 @@ import { useErrorHandler } from 'react-error-boundary';
 import { ThreeDots } from 'react-loader-spinner';
 import { AppContext } from './utils/context';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import AJO from './components/ajo/ajo';
 
 const App = () => {
   const context = useContext(AppContext);
@@ -22,7 +23,7 @@ const App = () => {
   //     document.querySelector('head').insertAdjacentHTML('beforeend', `<link rel="preconnect" href="${aemUrl}" />`);
   //   }
   // },[aemUrl]);
-  
+
   useEffect(() => {
 
     setWait(false);
@@ -92,6 +93,19 @@ const App = () => {
                 ><Screen /></ErrorBoundary>
 
               } />
+
+              <Route exact={true} path={'/ajo/:profile'} element={
+
+                <ErrorBoundary
+                  FallbackComponent={Error}
+                  onReset={() => {
+                    sessionStorage.removeItem('loggedin');
+                    sessionStorage.removeItem('auth');
+                  }}
+                ><AJO /></ErrorBoundary>
+
+              } />
+
             </Routes>
           </BrowserRouter>
         </div>

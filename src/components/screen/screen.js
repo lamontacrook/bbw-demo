@@ -31,7 +31,7 @@ const Screen = () => {
       + ('0' + (date.getMonth() + 1)).slice(-2) + '-'
       + ('0' + date.getDate()).slice(-2);
     date = localStorage.getItem('runas') || datestring;
- 
+
     const sdk = prepareRequest(context);
     sdk.runPersistedQuery(`${context.endpoint}/configuration`, { path: configPath })
       .then(({ data }) => {
@@ -39,7 +39,7 @@ const Screen = () => {
           const params = {
             date: date
           };
-          if(path) params['path'] = `/content/dam/${context.project}/${path}`;
+          if (path) params['path'] = `/content/dam/${context.project}/${path}`;
           if (audience) params['variation'] = audience;
 
           console.log(`Current audience is ${params.variation}`);
@@ -50,17 +50,7 @@ const Screen = () => {
           sdk.runPersistedQuery(`${context.endpoint}/screen`, params)
             .then(({ data }) => {
               if (data) {
-                if (data.screen.body.length === 0) {
-                  return (<p>No page available</p>);
-                }
-                if (Array.isArray(data.screen.body)) {
-                  data.screen.body = data.screen.body[0];
-                }
-                // data.screen.body._metadata.stringMetadata.map((metadata) => {
-                //   if (metadata.name === 'title')
-                //     setScreenTitle(metadata.value);
-                // });
-
+                console.log(data);
                 setData(data);
                 context.screenResponse = data;
               }
@@ -73,16 +63,20 @@ const Screen = () => {
       })
       .catch((error) => {
         console.log(error.message);
-        if(error.message.includes('<!DOCTYPE'))
+        if (error.message.includes('<!DOCTYPE'))
           error.message = `There is an issue connecting with AEM.  Make sure you are not using incognito window and logged into AEM author in another tab.\n\n ${error.message}`;
         else
           error.message = `Error with configuration request:\n ${error.message}`;
-        
+
         handleError(error);
       });
 
 
   }, [context, handleError, audience, path]);
+  
+  if(data && data.screen && data.screen.body) {
+    data.screen.body.map((b) => console.log(b));
+  }
 
   let i = 0;
   return (
@@ -91,26 +85,32 @@ const Screen = () => {
         <title>{screenTitle}</title>
       </Helmet>
       {data && data?.screen?.body && (
-        <Header config={config} content={data.screen.body.header} />
+        <Header config={config} content={data.screen.body[0].header} />
       )}
 
       <div className='main-body'>
-        {data && data?.screen?.body?.block?.map((item) => (
-          <div
-            key={`${item.__typename
-              .toLowerCase()
-              .replace(' ', '-')}-block-${i}`}
-            className='block'
-          >
+        {data && data.screen && data.screen.body && data.screen.body.map((b) => (
+          <React.Fragment key={b.__typename}>
+            {
+              b.block && b.block.map((item) => (
+                <div
+                  key={`${item.__typename
+                    .toLowerCase()
+                    .replace(' ', '-')}-block-${i}`}
+                  className='block'
+                >
 
-            <Delayed waitBeforeShow={200}>
-              <ModelManager
-                key={`${item.__typename}-entity-${i++}`}
-                content={item}
-                config={config.configurationByPath.item}
-              ></ModelManager>
-            </Delayed>
-          </div>
+                  <Delayed waitBeforeShow={200}>
+                    <ModelManager
+                      key={`${item.__typename}-entity-${i++}`}
+                      content={item}
+                      config={config.configurationByPath.item}
+                    ></ModelManager>
+                  </Delayed>
+                </div>
+              ))
+            }
+          </React.Fragment>
         ))}
         {config && config.configurationByPath && config.configurationByPath.item && (
           <Modal config={config.configurationByPath.item} audience={audience} />
@@ -131,6 +131,17 @@ Screen.propTypes = {
   pos3: PropTypes.string,
   location: PropTypes.object,
   context: PropTypes.object
+};
+
+export const updateCss = () => {
+  const cssVal = sessionStorage.getItem('css');
+  if (cssVal) {
+    cssVal.split(',').forEach((val) => {
+      const [variable, value] = val.split(':');
+      const root = document.querySelector(':root');
+      root.style.setProperty(variable, value);
+    });
+  }
 };
 
 export const ScreenGQL = `query ScreenByPath($path: String!) {
