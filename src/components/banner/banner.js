@@ -72,7 +72,6 @@ const imageCrops = [
 ];
 
 const Banner = ({ content, config }) => {
-  console.log(content);
   const context = useContext(AppContext);
   const style = content.style ? `${content.style} banner` : 'banner';
   const path = LinkManager(content.link?._path, config, context);

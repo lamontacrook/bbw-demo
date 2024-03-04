@@ -50,7 +50,7 @@ const Footer = ({ config }) => {
         )}
       </div>
       <div className='version'>
-        <span>version 1.0</span>
+        <span>version 1.1</span>
         <span>Author URL: <a href={context.serviceURL} target='_blank' rel='noreferrer'>{context.serviceURL}</a></span>
         <span>Current Project: {context.project}</span>
         <span><a href={`https://experience.adobe.com/#/aem/editor/canvas/${host}${pathname}`} target='_blank' rel='noreferrer'>Open in Editor</a></span>

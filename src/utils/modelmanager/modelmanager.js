@@ -11,12 +11,13 @@ export const componentMapping = {
 };
 
 const ModelManager = ({ content, config }) => {
-  const type = content.__typename.replace(/Model/g, '');
+  const type = content?.__typename.replace(/Model/g, '');
   const Component = componentMapping[type];
- 
+
   if (typeof Component !== 'undefined')
     return <Component content={content} config={config} />;
-  else return <p>Neet to add {type} to ModelManager.</p>;
+  else if (type) return <p>Neet to add {type} to ModelManager.</p>;
+  else return null;
 };
 
 ModelManager.propTypes = {
