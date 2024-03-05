@@ -33,6 +33,7 @@ const Screen = () => {
     date = localStorage.getItem('runas') || datestring;
 
     const sdk = prepareRequest(context);
+    console.log(context.endpoint);
     sdk.runPersistedQuery(`${context.endpoint}/configuration`, { path: configPath })
       .then(({ data }) => {
         if (data) {

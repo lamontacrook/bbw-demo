@@ -82,6 +82,7 @@ const Preview = () => {
               key={`${data.component.item.__typename}-entity-${i++}`}
               content={data.component.item}
               config={config.configurationByPath.item}
+              preview={true}
             ></ModelManager>
           </div>
         )}
