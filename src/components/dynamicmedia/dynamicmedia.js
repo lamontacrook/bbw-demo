@@ -30,7 +30,7 @@ const DynamicMedia = ({ asset, alt = 'WKND image', title = 'Title Missing', item
       method: 'get',
       headers: headers,
     };
-
+    
     if (!src.includes('publish-')) obj.credentials = 'include';
     const req = new Request(`${src}/_jcr_content/metadata.json`, obj);
    

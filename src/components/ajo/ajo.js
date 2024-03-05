@@ -17,8 +17,9 @@ const AJO = ({ children, config, od }) => {
   const context = useContext(AppContext);
   const endpoint = 'https://20409-781azuresnake-stage.adobeioruntime.net/api/v1/web/dx-excshell-1/offers';
   // const [od, setOd] = useState([]);
-
+  let x = 0;
   useEffect(() => {
+    console.log(x++);
     // fetch(endpoint, {
     //   method: 'post',
     //   body: JSON.stringify({ 'profile': 'lamont' }),

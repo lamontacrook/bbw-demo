@@ -55,6 +55,7 @@ const Promo = ({ content }) => {
     'data-aue-filter': 'cf',
     'data-aue-label': 'Promo'
   };
+
   return (
     <React.Fragment>
       <div className='promo' {...editorProps}>
@@ -62,7 +63,7 @@ const Promo = ({ content }) => {
           {!content?.dynamicRenditions && (
             <Image alt={content?.asset?.description} title={content?.asset?.title} asset={content.asset} imageSizes={imageSizes} />
           )}
-          {content?.dynamicRenditions && (
+          {content?.dynamicRenditions && content.asset && (
             <DynamicMedia alt={content?.asset?.description} title={content?.asset?.title} asset={content.asset} rendition={content.dynamicRenditions} />
           )}
         </div>
@@ -81,6 +82,7 @@ const Promo = ({ content }) => {
 
 Promo.propTypes = {
   content: PropTypes.object,
+  preview: PropTypes.bool
 };
 
 export default Promo;

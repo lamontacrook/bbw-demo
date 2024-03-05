@@ -10,12 +10,12 @@ export const componentMapping = {
   Promo
 };
 
-const ModelManager = ({ content, config }) => {
+const ModelManager = ({ content, config, preview }) => {
   const type = content?.__typename.replace(/Model/g, '');
   const Component = componentMapping[type];
 
   if (typeof Component !== 'undefined')
-    return <Component content={content} config={config} />;
+    return <Component content={content} config={config} preview={preview} />;
   else if (type) return <p>Neet to add {type} to ModelManager.</p>;
   else return null;
 };
@@ -25,7 +25,8 @@ ModelManager.propTypes = {
   content: PropTypes.object,
   references: PropTypes.string,
   config: PropTypes.object,
-  context: PropTypes.object
+  context: PropTypes.object,
+  preview: PropTypes.bool
 };
 
 export default ModelManager;

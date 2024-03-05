@@ -10,6 +10,12 @@
   overflow: scroll;
 }
 
+.main-body.preview > .block .list .elements {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .main-body > .block .list {
   background-color: #F2F2F2;
   padding: 16px 8px;
