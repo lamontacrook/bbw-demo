@@ -1,9 +1,83 @@
-.main-body > .block .list .promo {
+.main-body>.block .promo {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: 176px;
+}
+
+.main-body.preview .block:has(.promo) > .promo {
+  position: absolute;
+  left: 0;
+  top:0;
+}
+
+.main-body.preview .block:has(.promo) {
+  padding: 0;
+}
+
+.main-body>.block .promo-text p {
+  line-height: 18px;
+  font-style: normal;
+  font-weight: 400;
+  word-spacing: normal;
+  word-wrap: normal;
+  text-align: left;
+  font-size: 16px;
+}
+
+.main-body>.block .promo-text {
+  padding: 10px 5px;
+}
+
+.main-body.preview .promo-details {
+  width: 500px;
+}
+
+.main-body.preview .promo-details ul {
+  list-style-type: none;
+}
+
+.main-body.preview>.block .list .promo-container {
   display: flex;
   flex-direction: row;
 }
 
-.main-body > .block .promo-text p {
-  line-height: 18px;
-  font-size: 14px;
+.main-body>.block>.list .promo,
+.main-body.main-body.preview>.block>.list .promo-details {
+  min-width: 300px;
+  max-height: 150px;
+  background-color: white;
+  /* border: 1px solid black; */
+  margin: 16px 10px;
+}
+
+.main-body .block .promo-asset {
+  width: 150px;
+  /* height: 95px; */
+  margin: 0 5px;
+  position: relative;
+  /* background-color: red; */
+  padding: 10px;
+}
+
+.main-body .block>.list .promo-text,
+.main-body.preview>.block .promo-details {
+  margin: 7px 10px;
+  position: relative;
+  padding: 10px;
+  /* top: 50%;
+  transform: translateY(-50%); */
+}
+
+.main-body .block .promo-asset img {
+  width: 100%;
+  /* height: 100%; */
+  position: relative;
+  /* top: 50%;
+  transform: translateY(-50%); */
+  object-fit: cover;
+}
+
+.main-body.preview .block>.promo-details {
+  display: none;
 }

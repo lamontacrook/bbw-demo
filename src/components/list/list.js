@@ -27,8 +27,8 @@ const List = ({ content, config, preview = false }) => {
 
     if (preview) {
       console.log(preview);
-      sdk.runPersistedQuery(`${context.endpoint}/promos-all`).then(({data}) => {
-        if(data) {
+      sdk.runPersistedQuery(`${context.endpoint}/promos-all`).then(({ data }) => {
+        if (data) {
           console.log(data.promoList.items);
           setOffers(data.promoList.items);
         }
@@ -70,8 +70,9 @@ const List = ({ content, config, preview = false }) => {
     }
   }, [context, preview]);
 
-  let i = 0;
 
+  let i = 0;
+  console.log(offers);
   return (
     <div className='list'>
       {offers.length > 0 && (
@@ -86,10 +87,11 @@ const List = ({ content, config, preview = false }) => {
               ></ModelManager>
             ))}
             {preview && offers.map((item) => (
-              <ModelManager
-                key={`${item.__typename}-entity-${i++}`}
-                content={item}
-                config={config}></ModelManager>
+              <div key={`${item.__typename}-container-${i++}`} className='promo-container'>
+                <ModelManager
+                  content={item}
+                  config={config}></ModelManager>
+              </div>
             ))}
           </div>
         </React.Fragment>
