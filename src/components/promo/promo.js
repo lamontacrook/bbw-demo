@@ -76,6 +76,16 @@ const Promo = ({ content }) => {
           </span>
         </div>
       </div>
+      <div className='promo-details'>
+        <ul data-aue-prop='tags' data-aue-type='tags' data-aue-label='Metadata'>
+          {content.tags && Object.values(content.tags).map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+      </div>
+      <div className='promo-details'>
+        <span><textarea>{content._path}</textarea></span>
+      </div>
     </React.Fragment>
   );
 };

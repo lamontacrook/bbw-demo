@@ -20,32 +20,3 @@
   background-color: #F2F2F2;
   padding: 16px 8px;
 }
-
-.main-body > .block > .list .promo {
-  min-width: 300px;
-  max-height: 150px;
-  background-color: white;
-  /* border: 1px solid black; */
-  margin: 16px 10px;
-}
-
-.main-body .block > .list .promo-asset {
-  max-width: 110px;
-  margin: 0 5px;
-  position: relative;
-}
-
-.main-body .block > .list .promo-text {
-  margin: 7px 10px;
-  position: relative;
-  /* top: 50%;
-  transform: translateY(-50%); */
-}
-
-.main-body .block > .list .promo-asset img {
-  width: 100%;
-  max-height: 100%;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-}
