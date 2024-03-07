@@ -33,8 +33,22 @@
   width: 500px;
 }
 
-.main-body.preview .promo-details ul {
+.main-body.preview .promo-details dl {
   list-style-type: none;
+}
+
+.main-body.preview .promo-details dd,
+.main-body.preview .promo-details dl {
+  font-size: 16px;
+}
+
+.main-body.preview .promo-details dt {
+  font-weight: 800;
+  padding-bottom: 2px;
+}
+
+.main-body.preview .promo-details dd {
+  padding-bottom: 10px;
 }
 
 .main-body.preview>.block .list .promo-container {
