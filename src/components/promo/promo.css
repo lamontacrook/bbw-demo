@@ -43,7 +43,7 @@
 }
 
 .main-body>.block>.list .promo,
-.main-body.main-body.preview>.block>.list .promo-details {
+.main-body.preview>.block>.list .promo-details {
   min-width: 300px;
   max-height: 150px;
   background-color: white;
@@ -60,11 +60,15 @@
   padding: 10px;
 }
 
+.main-body .block .promo-details {
+  display: none;
+}
 .main-body .block>.list .promo-text,
 .main-body.preview>.block .promo-details {
   margin: 7px 10px;
   position: relative;
   padding: 10px;
+  display: block;
   /* top: 50%;
   transform: translateY(-50%); */
 }
