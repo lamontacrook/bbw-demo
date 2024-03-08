@@ -35,38 +35,44 @@ const List = ({ content, config, preview = false }) => {
       });
     }
     else {
-      fetch(endpoint, {
-        method: 'post',
-        body: JSON.stringify({ 'profile': 'lamont' }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }).then((response) => {
-        if (response) {
-          response.json().then((data) => {
-            if (data && data['xdm:propositions']) {
-              data['xdm:propositions'].map((item) => {
-                if (item['xdm:options']) {
-                  item['xdm:options'].map((option) => {
-                    const path = option['xdm:content'];
-                    if (path && (promos.indexOf(path) === -1)) {
-                      promos.push(path);
-                      promises.push(
-                        sdk.runPersistedQuery(`${context.endpoint}/promo-list`, { path: path })
-                      );
-                    }
-                  });
-                }
-              });
-              if (promises.length > 0) Promise.all(promises).then((promise) => {
-                setOffers(promise.map((p) => {
-                  return p.data;
-                }));
-              });
-            }
-          });
+      sdk.runPersistedQuery(`${context.endpoint}/promos-all-but`).then(({ data }) => {
+        if (data) {
+          console.log(data.promoList.items);
+          setOffers(data.promoList.items);
         }
       });
+      // fetch(endpoint, {
+      //   method: 'post',
+      //   body: JSON.stringify({ 'profile': 'lamont' }),
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   }
+      // }).then((response) => {
+      //   if (response) {
+      //     response.json().then((data) => {
+      //       if (data && data['xdm:propositions']) {
+      //         data['xdm:propositions'].map((item) => {
+      //           if (item['xdm:options']) {
+      //             item['xdm:options'].map((option) => {
+      //               const path = option['xdm:content'];
+      //               if (path && (promos.indexOf(path) === -1)) {
+      //                 promos.push(path);
+      //                 promises.push(
+      //                   sdk.runPersistedQuery(`${context.endpoint}/promo-list`, { path: path })
+      //                 );
+      //               }
+      //             });
+      //           }
+      //         });
+      //         if (promises.length > 0) Promise.all(promises).then((promise) => {
+      //           setOffers(promise.map((p) => {
+      //             return p.data;
+      //           }));
+      //         });
+      //       }
+      //     });
+      //   }
+      // });
     }
   }, [context, preview]);
 
@@ -79,21 +85,13 @@ const List = ({ content, config, preview = false }) => {
         <React.Fragment>
           <span>{mapJsonRichText(content.title.json)}</span>
           <div className='elements'>
-            {!preview && (
-              <React.Fragment>
-                <div className='promo'></div>
-                <div className='promo'></div>
-                <div className='promo'></div>
-                <div className='promo'></div>
-                <div className='promo'></div>
-                <div className='promo'></div>
-              </React.Fragment>
-              // <ModelManager
-              //   key={`${item?.promoByPath?.item.__typename}-entity-${i++}`}
-              //   content={item?.promoByPath?.item}
-              //   config={config}
-              // ></ModelManager>
-            )}
+            {!preview && offers.map((item) => (
+              <ModelManager
+                key={`${item?.promoByPath?.item.__typename}-entity-${i++}`}
+                content={item}
+                config={config}
+              ></ModelManager>
+            ))}
             {preview && offers.map((item) => (
               <div key={`${item.__typename}-container-${i++}`} className='promo-container'>
                 <ModelManager

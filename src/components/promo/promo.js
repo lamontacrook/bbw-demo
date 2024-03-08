@@ -85,7 +85,7 @@ const Promo = ({ content }) => {
         </dl>
       </div>
       <div className='promo-details'>
-        <span><textarea>{content._path}</textarea></span>
+        <span><textarea readOnly value={content._path}></textarea></span>
       </div>
     </React.Fragment>
   );
