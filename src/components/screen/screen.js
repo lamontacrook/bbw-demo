@@ -112,7 +112,7 @@ const Screen = () => {
             }
           </React.Fragment>
         ))}
-        {config && config.configurationByPath && config.configurationByPath.item && (
+        {config && config.configurationByPath && config.configurationByPath.item && context.serviceURL.includes('author') && (
           <Modal config={config.configurationByPath.item} audience={audience} />
         )}
       </div>
