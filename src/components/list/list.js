@@ -79,13 +79,21 @@ const List = ({ content, config, preview = false }) => {
         <React.Fragment>
           <span>{mapJsonRichText(content.title.json)}</span>
           <div className='elements'>
-            {!preview && offers.map((item) => (
-              <ModelManager
-                key={`${item?.promoByPath?.item.__typename}-entity-${i++}`}
-                content={item?.promoByPath?.item}
-                config={config}
-              ></ModelManager>
-            ))}
+            {!preview && (
+              <React.Fragment>
+                <div className='promo'></div>
+                <div className='promo'></div>
+                <div className='promo'></div>
+                <div className='promo'></div>
+                <div className='promo'></div>
+                <div className='promo'></div>
+              </React.Fragment>
+              // <ModelManager
+              //   key={`${item?.promoByPath?.item.__typename}-entity-${i++}`}
+              //   content={item?.promoByPath?.item}
+              //   config={config}
+              // ></ModelManager>
+            )}
             {preview && offers.map((item) => (
               <div key={`${item.__typename}-container-${i++}`} className='promo-container'>
                 <ModelManager
